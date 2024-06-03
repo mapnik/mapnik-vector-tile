@@ -236,7 +236,7 @@ box2d<double> tile_datasource_pbf::envelope() const
     return extent_;
 }
 
-boost::optional<mapnik::datasource_geometry_t> tile_datasource_pbf::get_geometry_type() const
+std::optional<mapnik::datasource_geometry_t> tile_datasource_pbf::get_geometry_type() const
 {
     return mapnik::datasource_geometry_t::Collection;
 }

@@ -65,7 +65,7 @@ inline double get_point_value<double>(double const val,
 
 constexpr std::size_t max_reserve()
 {
-    // Based on int64_t geometry being 16 bytes in size and 
+    // Based on int64_t geometry being 16 bytes in size and
     // maximum allocation size of 1 MB.
     return (1024 * 1024) / 16;
 }
@@ -289,10 +289,9 @@ void decode_linestring(mapnik::geometry::geometry<geom_value_type> & geom,
     }
     else if (num_lines == 1)
     {
-        auto itr = std::make_move_iterator(multi_line.begin());
-        if (itr->size() > 1)
+        if (!multi_line.front().empty())
         {
-            geom = std::move(*itr);
+            geom = std::move(*std::make_move_iterator(multi_line.begin()));
         }
         else
         {
@@ -549,7 +548,7 @@ void decode_polygon(mapnik::geometry::geometry<geom_value_type> & geom,
         auto & poly = multi_poly.back();
         if (reverse_rings)
         {
-            std::reverse(rings_itr->begin(), rings_itr->end());
+            std::reverse((*rings_itr).begin(), (*rings_itr).end());
         }
         poly.push_back(std::move(*rings_itr));
     }

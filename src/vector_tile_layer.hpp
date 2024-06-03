@@ -207,7 +207,7 @@ public:
         mapnik::box2d<double> ext(tile_extent_bbox);
         double scale = ext.width() / layer_extent_;
         double buffer_padding = 2.0 * scale;
-        boost::optional<int> layer_buffer_size = lay.buffer_size();
+        auto layer_buffer_size = lay.buffer_size();
         if (layer_buffer_size) // if layer overrides buffer size, use this value to compute buffered extent
         {
             if (!ds_ || ds_->type() == datasource::Vector)
@@ -236,7 +236,7 @@ public:
         ext.width(buffered_width);
         ext.height(buffered_height);
 
-        boost::optional<box2d<double> > const& maximum_extent = map.maximum_extent();
+        auto const& maximum_extent = map.maximum_extent();
         if (maximum_extent)
         {
             ext.clip(*maximum_extent);

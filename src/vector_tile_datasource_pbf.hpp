@@ -1,7 +1,6 @@
 #pragma once
 
 // mapnik
-//#include <mapnik/geometry/box2d.hpp>
 #include <mapnik/datasource.hpp>
 #include <mapnik/util/variant.hpp>
 
@@ -33,7 +32,7 @@ public:
     void set_envelope(box2d<double> const& bbox);
     box2d<double> get_tile_extent() const;
     box2d<double> envelope() const;
-    boost::optional<datasource_geometry_t> get_geometry_type() const;
+    std::optional<datasource_geometry_t> get_geometry_type() const;
     layer_descriptor get_descriptor() const;
     std::string const& get_name() { return name_; }
     std::uint32_t get_layer_extent() { return tile_size_; }

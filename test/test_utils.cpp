@@ -119,7 +119,7 @@ unsigned compare_images(mapnik::image_rgba8 const& src1,
                         int threshold,
                         bool alpha)
 {
-    boost::optional<std::string> type = mapnik::type_from_filename(filepath);
+    auto type = mapnik::type_from_filename(filepath);
     if (!type)
     {
         throw mapnik::image_reader_exception("Failed to detect type of: " + filepath);
