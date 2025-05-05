@@ -18,7 +18,7 @@ inline mapnik::box2d<double> tile_mercator_bbox(std::uint64_t x,
                                                 std::uint64_t y,
                                                 std::uint64_t z)
 {
-    const double half_of_equator = M_PI * EARTH_RADIUS;
+    const double half_of_equator = mapnik::util::pi * EARTH_RADIUS;
     const double tile_size = 2.0 * half_of_equator / (1ull << z);
     double minx = -half_of_equator + x * tile_size;
     double miny = half_of_equator - (y + 1.0) * tile_size;
